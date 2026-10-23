@@ -1,0 +1,27 @@
+(function (root, factory) {
+  if (typeof module === 'object' && module.exports) module.exports = factory(); else root.Industries = factory();
+})(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+// صنعت هر نماد. نمادهای ناشناخته در «سایر» (O) قرار می‌گیرند. این فایل را آزادانه ویرایش کنید.
+const NAMES = {
+  P: 'پتروشیمی و نفتی', M: 'فلزات و معدن', D: 'دارو', I: 'سرمایه‌گذاری',
+  B: 'بانک و بیمه', F: 'غذایی و کشاورزی', A: 'خودرو و قطعات', C: 'سیمان',
+  T: 'فناوری', L: 'حمل‌ونقل', O: 'سایر',
+};
+const GROUPS = {
+  P: 'شراز شبریز شبندر کرماشا زاگرس شرانل شبصیر شگویا حفاری',
+  D: 'دسینا دزاگرس دلقما درازک داترا پخش دقاضی دتوزیع دپارس داسوه دتولید',
+  M: 'فملی فولاد فغدیر فرآور فخاس فجام کطبس',
+  I: 'ومعلم امید وتوشه وبانک پاکشو سباقر ولبهمن ومدیر وسپه پردیس',
+  B: 'البرز آسیا معین وپست ونوین ما وشهر اتکاسا',
+  F: 'غاذر غپونه غبهار غسالم غمینو غمهرا غشاذر نان زفکا',
+  A: 'پتایر خموتور بنیرو خودرو',
+  C: 'کساوه',
+  T: 'رافزا اسیاتک',
+  L: 'حگهر حریل',
+};
+const MAP = {};
+for (const [code, list] of Object.entries(GROUPS)) for (const s of list.split(/\s+/)) MAP[s] = code;
+const industryOf = (symbol) => MAP[symbol] || 'O';
+return { NAMES, industryOf };
+});
